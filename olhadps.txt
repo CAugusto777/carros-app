@@ -1,0 +1,24 @@
+https://github.com/JuarezSSJ/projeto-angular/
+consultar
+
+
+metodos é uma função dentro da class para execultar uma 
+função especifica
+
+declara o metodos
+this.resultado = thisnumero1 + this.numero2;
+thisN1 pega o valor digitado no primeiro campo
+thisN2 pega o valor digitado no segundo campo
+ambos são somados 
+O resultado é armazenado na variavel resultado.
+* pedir slide
+forms module- modulo do angular que permite que agente use recuros do formulario no html.
+ngmodel é exp
+
+formsModule*
+como usar - #frm=" ngForm" para cria a variavel do formulario
+
+ngModel- two way Data binding - tudo que for digitado vai para a var N1
+
+@if e @ngif**
+

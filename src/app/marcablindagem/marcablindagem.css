@@ -1,0 +1,252 @@
+/* CSS para página de blindagem */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'WDXL Lubrifont TC', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.menus {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-principal ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menu-principal a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.menu-principal a:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Main content */
+.meio {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 200px);
+}
+
+/* Título centralizado */
+.titulo {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.titulo h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.titulo h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border-radius: 2px;
+}
+
+/* Grid das empresas de blindagem */
+.marcas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    margin-top: 2rem;
+}
+
+.marca-item {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    max-width: 350px;
+    width: 100%;
+}
+
+.marca-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.marca-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.marca-item img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.marca-item:hover img {
+    transform: scale(1.05);
+}
+
+.marca-item h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+}
+
+.marca-item:hover h3 {
+    color: #007bff;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.redeSocial {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.redeSocial p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.redeSocial a {
+    display: inline-block;
+    margin: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.redeSocial a:hover {
+    transform: scale(1.1);
+}
+
+.redeSocial img {
+    width: 40px;
+    height: 40px;
+}
+
+.logoFinal {
+    text-align: center;
+}
+
+.logoFinal img {
+    max-height: 50px;
+    width: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.logoFinal img:hover {
+    opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .titulo h1 {
+        font-size: 2rem;
+    }
+    
+    .marcas-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .marca-item {
+        padding: 1.5rem;
+    }
+    
+    .menu-principal ul {
+        gap: 1rem;
+    }
+    
+    .menu-principal a {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .meio {
+        padding: 1rem;
+    }
+    
+    .titulo h1 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .marca-item img {
+        max-width: 120px;
+    }
+    
+    .marca-item h3 {
+        font-size: 1.2rem;
+    }
+}
+

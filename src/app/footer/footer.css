@@ -1,0 +1,57 @@
+footer {
+    background-color: #1E90FF;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.redeSocial {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.redeSocial img {
+    height: 30px;
+}
+
+.logoFinal img {
+    height: 50px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu-principal ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    main {
+        flex-direction: column;
+    }
+    
+    .conteudo-principal {
+        flex-direction: column;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .redeSocial {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
