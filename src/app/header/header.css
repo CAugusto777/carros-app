@@ -1,10 +1,32 @@
+
+/* Importação da fonte do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap");
+
+/* Estilos gerais com a nova paleta */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F9FAFB; /* Fundo: Cinza bem claro */
+    color: #111827;           /* Texto: Cinza quase preto */
+    padding-bottom: 100px;
+}
+
+/* Estilos do Header */
 header {
-    background-color: #1E90FF;
-    color: white;
+    background-color: #111827; /* Texto (agora como fundo do header): Alto contraste */
+    color: #F9FAFB;           /* Fundo (agora como cor do texto do header) */
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 10;
+    border-bottom: 4px solid #3B82F6; /* Primária: Detalhe em azul para dar vida */
 }
 
 .logo a img {
@@ -20,12 +42,15 @@ header {
 
 .menu-principal a {
     text-decoration: none;
-    color: white;
+    color: #F9FAFB; /* Cor do texto do menu */
     font-weight: bold;
-    font-family: 'WDXL Lubrifont TC', sans-serif;
+    font-family: "WDXL Lubrifont TC", sans-serif;
     transition: color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 6px;
 }
 
 .menu-principal a:hover {
-    color: #ccc;
+    color: #111827;
+    background-color: #3B82F6; /* Primária: Efeito hover no menu */
 }
