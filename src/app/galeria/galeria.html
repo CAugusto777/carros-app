@@ -4,45 +4,120 @@
         
         <!-- Carrossel de Fotos -->
         <div class="carousel-container">
-            <button class="carousel-btn prev-btn" onclick="prevSlide()">&#10094;</button>
+            <!-- Controles do Carrossel -->
+            <div class="carousel-controls">
+                <button class="control-btn" (click)="toggleAutoSlide()" [title]="isAutoSliding ? 'Pausar slideshow automático' : 'Iniciar slideshow automático'">
+                    <svg *ngIf="isAutoSliding" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                    <svg *ngIf="!isAutoSliding" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+            </div>
+            
+            <button class="carousel-btn prev-btn" (click)="prevSlide()">&#10094;</button>
             
             <div class="carousel">
                 <div class="carousel-slide active">
-                    <img src="/IMG/1034306-2048x1152.jpg" alt="Carro 1">
+                    <img src="assets/IMG/1034306-2048x1152.jpg" alt="Carro Esportivo Azul" loading="lazy">
+                    <div class="slide-caption">
+                        <h3>Carro Esportivo Premium</h3>
+                        <p>Design aerodinâmico e performance excepcional</p>
+                    </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="/IMG/2021-Mercedes-AMG-GT-Black-Series-009-2160-scaled.jpg" alt="Mercedes AMG GT">
+                    <img src="assets/IMG/2021-Mercedes-AMG-GT-Black-Series-009-2160-scaled.jpg" alt="Mercedes AMG GT Black Series" loading="lazy">
+                    <div class="slide-caption">
+                        <h3>Mercedes AMG GT Black Series</h3>
+                        <p>O ápice da engenharia alemã em alta performance</p>
+                    </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="/IMG/2021-lamborghini-huraca-n-sto-112-1628181687.jpg" alt="Lamborghini Huracán">
+                    <img src="assets/IMG/2021-lamborghini-huraca-n-sto-112-1628181687.jpg" alt="Lamborghini Huracán STO" loading="lazy">
+                    <div class="slide-caption">
+                        <h3>Lamborghini Huracán STO</h3>
+                        <p>Pura adrenalina italiana em cada curva</p>
+                    </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="/IMG/Porsche 911 Carrera T parked in a courtyard.jpg" alt="Porsche 911 Carrera T">
+                    <img src="assets/IMG/Porsche 911 Carrera T parked in a courtyard.jpg" alt="Porsche 911 Carrera T" loading="lazy">
+                    <div class="slide-caption">
+                        <h3>Porsche 911 Carrera T</h3>
+                        <p>Tradição e inovação em perfeita harmonia</p>
+                    </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="/IMG/globalcarro.jpg" alt="Carro Global">
+                    <img src="assets/IMG/globalcarro.jpg" alt="Carro Global" loading="lazy">
+                    <div class="slide-caption">
+                        <h3>Carro Global Premium</h3>
+                        <p>Luxo e sofisticação em cada detalhe</p>
+                    </div>
                 </div>
             </div>
             
-            <button class="carousel-btn next-btn" onclick="nextSlide()">&#10095;</button>
+            <button class="carousel-btn next-btn" (click)="nextSlide()">&#10095;</button>
             
             <div class="carousel-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot active" (click)="goToSlide(0)" [attr.aria-label]="'Ir para slide 1'"></span>
+                <span class="dot" (click)="goToSlide(1)" [attr.aria-label]="'Ir para slide 2'"></span>
+                <span class="dot" (click)="goToSlide(2)" [attr.aria-label]="'Ir para slide 3'"></span>
+                <span class="dot" (click)="goToSlide(3)" [attr.aria-label]="'Ir para slide 4'"></span>
+                <span class="dot" (click)="goToSlide(4)" [attr.aria-label]="'Ir para slide 5'"></span>
+            </div>
+            
+            <!-- Indicador de progresso -->
+            <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="((currentSlide + 1) / totalSlides) * 100"></div>
+            </div>
+        </div>
+
+        <!-- Galeria em Grade -->
+        <div class="gallery-grid">
+            <h2>Explore Nossa Coleção</h2>
+            <div class="grid-container">
+                <div class="grid-item" (click)="goToSlide(0)">
+                    <img src="assets/IMG/1034306-2048x1152.jpg" alt="Carro Esportivo" loading="lazy">
+                    <div class="grid-overlay">
+                        <span>Ver no Carrossel</span>
+                    </div>
+                </div>
+                <div class="grid-item" (click)="goToSlide(1)">
+                    <img src="assets/IMG/2021-Mercedes-AMG-GT-Black-Series-009-2160-scaled.jpg" alt="Mercedes AMG GT" loading="lazy">
+                    <div class="grid-overlay">
+                        <span>Ver no Carrossel</span>
+                    </div>
+                </div>
+                <div class="grid-item" (click)="goToSlide(2)">
+                    <img src="assets/IMG/2021-lamborghini-huraca-n-sto-112-1628181687.jpg" alt="Lamborghini Huracán" loading="lazy">
+                    <div class="grid-overlay">
+                        <span>Ver no Carrossel</span>
+                    </div>
+                </div>
+                <div class="grid-item" (click)="goToSlide(3)">
+                    <img src="assets/IMG/Porsche 911 Carrera T parked in a courtyard.jpg" alt="Porsche 911" loading="lazy">
+                    <div class="grid-overlay">
+                        <span>Ver no Carrossel</span>
+                    </div>
+                </div>
+                <div class="grid-item" (click)="goToSlide(4)">
+                    <img src="assets/IMG/globalcarro.jpg" alt="Carro Global" loading="lazy">
+                    <div class="grid-overlay">
+                        <span>Ver no Carrossel</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Área de Upload de Fotos -->
         <div class="upload-section">
             <h2>Envie suas Fotos</h2>
-            <p>Compartilhe suas fotos de carros conosco!</p>
+            <p>Compartilhe suas fotos de carros conosco e faça parte da nossa galeria!</p>
             
             <div class="upload-container">
-                <input type="file" id="fileInput" accept="image/*" multiple style="display: none;" onchange="handleFileSelect(event)">
-                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none;" (change)="handleFileSelect($event)">
+                <button class="upload-btn" (click)="triggerFileInput()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="17 8 12 3 7 8"></polyline>
@@ -51,6 +126,15 @@
                     Selecionar Fotos
                 </button>
                 <div id="fileInfo" class="file-info"></div>
+                <div class="upload-tips">
+                    <h4>Dicas para melhores fotos:</h4>
+                    <ul>
+                        <li>Use boa iluminação natural</li>
+                        <li>Capture diferentes ângulos</li>
+                        <li>Resolução mínima: 1920x1080</li>
+                        <li>Formatos aceitos: JPG, PNG, WEBP</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

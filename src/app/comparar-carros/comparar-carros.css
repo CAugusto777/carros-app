@@ -1,0 +1,397 @@
+/* Estilos da Página Comparar Carros */
+.comparar-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px);
+}
+
+.comparar-section h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Grid de Carros */
+.carros-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Card do Carro */
+.carro-card {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.carro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.carro-card.selected {
+    border: 3px solid #667eea;
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Checkbox Container */
+.checkbox-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.carro-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    accent-color: #667eea;
+    transform: scale(1.2);
+}
+
+/* Imagem do Carro */
+.carro-imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.carro-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carro-card:hover .carro-imagem img {
+    transform: scale(1.05);
+}
+
+/* Informações do Carro */
+.carro-info {
+    padding: 20px;
+}
+
+.carro-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+    min-height: 50px;
+    font-weight: 600;
+}
+
+.carro-info .ano {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.carro-info .valor {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Botão Comparar */
+.comparar-btn-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.comparar-btn {
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.comparar-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+}
+
+.comparar-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.info-text {
+    margin-top: 15px;
+    color: #666;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Modal de Comparação */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 3% auto;
+    padding: 40px;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 15px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.4s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    color: #000;
+    transform: scale(1.1);
+}
+
+.modal-content h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #333;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Container de Comparação */
+.comparacao-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.carro-comparacao {
+    flex: 1;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carro-comparacao img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carro-comparacao h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-item:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.spec-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.spec-value {
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* VS Divider */
+.vs-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.vs-divider span {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .carros-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .carros-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .comparacao-container {
+        flex-direction: column;
+    }
+    
+    .vs-divider {
+        transform: rotate(90deg);
+        margin: 20px 0;
+    }
+    
+    .vs-divider span {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .carros-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .comparar-section {
+        padding: 20px 15px;
+    }
+    
+    .comparar-section h1 {
+        font-size: 2rem;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .carro-comparacao {
+        padding: 20px;
+    }
+    
+    .carro-comparacao img {
+        height: 200px;
+    }
+    
+    .comparar-btn {
+        padding: 15px 40px;
+        font-size: 1.1rem;
+    }
+    
+    .vs-divider span {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carro-info h3 {
+        font-size: 1rem;
+        min-height: 40px;
+    }
+    
+    .carro-info .valor {
+        font-size: 1.1rem;
+    }
+    
+    .spec-item {
+        padding: 10px 0;
+    }
+    
+    .spec-label,
+    .spec-value {
+        font-size: 0.9rem;
+    }
+}

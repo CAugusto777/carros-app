@@ -44,16 +44,18 @@ main {
     position: relative;
     border-radius: 12px; /* Bordas mais arredondadas */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 500px; /* Altura fixa para o carrossel */
 }
 
 .carousel-images {
     display: flex;
     transition: transform 0.4s ease-in-out;
+    height: 100%;
 }
 
 .carousel-images img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -64,29 +66,40 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(17, 24, 39, 0.6);
-    color: #F9FAFB;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
     border: none;
-    padding: 12px;
+    padding: 15px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
-    z-index: 5;
-    transition: background-color 0.3s ease;
+    z-index: 15;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .carrosel .prev:hover,
 .carrosel .next:hover {
-    background-color: #3B82F6;
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.carrosel .prev { left: 15px; }
-.carrosel .next { right: 15px; }
+.carrosel .prev { left: 20px; }
+.carrosel .next { right: 20px; }
 
 /* Responsividade */
 @media (max-width: 768px) {
-   
+    main {
+        flex-direction: column;
+    }
 
     .eventos {
         position: static;
@@ -102,12 +115,49 @@ main {
     .carrosel {
         width: 100%;
         border-radius: 0;
+        height: 400px;
     }
 
     .carrosel .prev,
     .carrosel .next {
-        padding: 8px;
-        width: 35px;
-        height: 35px;
+        padding: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .carrosel .prev { left: 15px; }
+    .carrosel .next { right: 15px; }
+}
+
+.home-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    pointer-events: none; /* Permite cliques passarem para o carrossel */
+}
+
+.home-text-overlay h1 {
+    font-family: 'WDXL Lubrifont TC', sans-serif;
+    font-size: 3.5rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .home-text-overlay h1 {
+        font-size: 2.5rem;
     }
 }
+
+@media (max-width: 480px) {
+    .home-text-overlay h1 {
+        font-size: 1.8rem;
+    }
+}
+

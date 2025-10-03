@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, ElementRef, viewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './home.html', 
   styleUrls: ['./home.css']
 })
-export class CarrosselComponent implements OnInit, OnDestroy { // Nome de classe PascalCase
+export class Home implements OnInit, OnDestroy { // Nome de classe PascalCase
 
   // Acessa o elemento DOM principal referenciado com #carouselContainer no HTML
   private readonly containerRef = viewChild.required<ElementRef<HTMLElement>>('carouselContainer'); 
