@@ -1,66 +1,85 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   imports: [],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+  templateUrl: './home.html', 
+  styleUrls: ['./home.css']
 })
-export class carrosel {
+export class CarrosselComponent implements OnInit, OnDestroy { // Nome de classe PascalCase
 
-  // 1. Elementos DOM (Tipados para garantir que não são null e são do tipo correto)
-  private carouselContainer: HTMLElement;
-  private carouselImages: HTMLElement;
-  private prevButton: HTMLElement;
-  private nextButton: HTMLElement;
-  private images: NodeListOf<HTMLImageElement>;
+  // Acessa o elemento DOM principal referenciado com #carouselContainer no HTML
+  @ViewChild('carouselContainer', { static: true }) 
+  private containerRef!: ElementRef<HTMLElement>; 
 
-  // 2. Variáveis de Estado
+  // Acessa a div interna das imagens
+  @ViewChild('carouselImages', { static: true }) 
+  private imagesRef!: ElementRef<HTMLElement>; 
+
+  // Referências para os botões
+  @ViewChild('prevButton') private prevButton!: ElementRef<HTMLElement>;
+  @ViewChild('nextButton') private nextButton!: ElementRef<HTMLElement>;
+
+  // 1. Variáveis de Estado
   private currentIndex: number = 0;
-  private totalImages: number;
-  private slideInterval: number = 2000;
-  // O tipo de retorno de setInterval() em um ambiente de navegador é 'number'
+  private totalImages: number = 0;
+  private slideInterval: number = 5000; // Aumentei o intervalo para 5s
   private autoSlideTimer: number | undefined; 
 
-  /**
-   * O construtor busca os elementos DOM e inicializa o carrossel.
-   * @param selector O seletor CSS do contêiner principal do carrossel (ex: '.carrosel')
-   */
-  constructor(selector: string) {
-      // Assegura que os elementos sejam HTMLElement (Non-Null Assertion e Casting)
-      this.carouselContainer = document.querySelector(selector) as HTMLElement;
-      this.carouselImages = this.carouselContainer.querySelector('.carousel-images') as HTMLElement;
-      this.prevButton = this.carouselContainer.querySelector('.prev') as HTMLElement;
-      this.nextButton = this.carouselContainer.querySelector('.next') as HTMLElement;
-      this.images = this.carouselContainer.querySelectorAll('.carousel-images img');
+  // 2. Método do Ciclo de Vida: Inicialização
+  ngOnInit(): void {
+    // Busca as imagens dentro do contêiner após a view ser inicializada
+    const images = this.imagesRef.nativeElement.querySelectorAll('img');
+    this.totalImages = images.length;
 
-      this.totalImages = this.images.length;
-      
-      // Se a validação falhar, desativa o carrossel e retorna
-      if (!this.carouselContainer || this.totalImages <= 1) {
-          console.warn('Carrossel desativado: elementos DOM ausentes ou apenas um slide.');
-          if(this.prevButton) this.prevButton.style.display = 'none';
-          if(this.nextButton) this.nextButton.style.display = 'none';
-          return;
-      }
+    if (this.totalImages <= 1) {
+      console.warn('Carrossel desativado: elementos DOM ausentes ou apenas um slide.');
+      // Oculta botões via CSS se não houver lógica Angular para isso.
+      return; 
+    }
 
-      this.initialize();
+    this.initialize();
+  }
+  
+  // 3. Método do Ciclo de Vida: Limpeza
+  ngOnDestroy(): void {
+    this.stopAutoSlide(); // Garante que o timer seja limpo
   }
 
-  // 3. Funções Principais
+  // 4. Funções de Controle e Lógica
+  
+  public updateCarousel(): void {
+    // VERIFICAÇÃO DE SEGURANÇA
+    if (!this.containerRef || !this.imagesRef) {
+        console.error('Erro: Elementos do Carrossel não carregados (containerRef ou imagesRef).');
+        return; 
+    }
+    
+    // Acesso ao elemento nativo
+    const containerEl = this.containerRef.nativeElement;
+    const imagesEl = this.imagesRef.nativeElement;
+    
+    // 1. Calcula a largura do contêiner (e, portanto, de um slide)
+    const containerWidth: number = containerEl.clientWidth; 
 
-  /**
-   * Atualiza a posição do carrossel usando 'transform: translateX()'.
-   */
-  private updateCarousel(): void {
-      const imageWidth: number = this.carouselContainer.clientWidth;
-      // Usa 'this.' para acessar as propriedades da classe
-      this.carouselImages.style.transform = `translateX(-${imageWidth * this.currentIndex}px)`;
+    // 2. Aplica a transformação com interpolação
+    imagesEl.style.transform = 
+        `translateX(-${containerWidth * this.currentIndex}px)`;
+}
+
+  public nextSlide(): void { // Pode ser público para o HTML
+    this.currentIndex = (this.currentIndex + 1) % this.totalImages;
+    this.updateCarousel();
+    this.resetTimer();
   }
 
-  /**
-   * Move para um slide aleatório diferente do atual.
-   */
+  public prevSlide(): void { // Pode ser público para o HTML
+    this.currentIndex = (this.currentIndex - 1 + this.totalImages) % this.totalImages;
+    this.updateCarousel();
+    this.resetTimer();
+  }
+
+  // Mantendo o slide aleatório
   private showRandomSlide(): void {
       let newIndex: number;
       do {
@@ -70,77 +89,38 @@ export class carrosel {
       this.updateCarousel();
   }
 
-  /**
-   * Move para o próximo slide (volta ao primeiro após o último).
-   */
-  private nextSlide(): void {
-      this.currentIndex = (this.currentIndex + 1) % this.totalImages;
-      this.updateCarousel();
-  }
-
-  /**
-   * Move para o slide anterior (vai para o último após o primeiro).
-   */
-  private prevSlide(): void {
-      this.currentIndex = (this.currentIndex - 1 + this.totalImages) % this.totalImages;
-      this.updateCarousel();
-  }
-
-  // 4. Funções de Controle do Timer
+  // 5. Funções de Controle do Timer
 
   private startAutoSlide(): void {
-      // Usa window.setInterval para tipar corretamente o retorno
-      this.autoSlideTimer = window.setInterval(() => this.showRandomSlide(), this.slideInterval);
+    // Usa window.setInterval para tipar corretamente o retorno
+    this.autoSlideTimer = window.setInterval(() => this.showRandomSlide(), this.slideInterval);
   }
 
   private stopAutoSlide(): void {
-      if (this.autoSlideTimer !== undefined) {
-          window.clearInterval(this.autoSlideTimer);
-          this.autoSlideTimer = undefined; 
-      }
+    if (this.autoSlideTimer !== undefined) {
+      window.clearInterval(this.autoSlideTimer);
+      this.autoSlideTimer = undefined; 
+    }
   }
 
   private resetTimer(): void {
-      this.stopAutoSlide();
-      this.startAutoSlide();
+    this.stopAutoSlide();
+    this.startAutoSlide();
   }
-
-  // 5. Configuração de Eventos
-
-  /**
-   * Anexa todos os listeners de eventos aos elementos.
-   */
-  private attachEventListeners(): void {
-      // Arrow functions são usadas para garantir que 'this' se refere à classe 'Carousel'
-      this.nextButton.addEventListener('click', () => {
-          this.nextSlide();
-          this.resetTimer();
-      });
-
-      this.prevButton.addEventListener('click', () => {
-          this.prevSlide();
-          this.resetTimer();
-      });
-
-      this.carouselContainer.addEventListener('mouseenter', () => this.stopAutoSlide());
-      this.carouselContainer.addEventListener('mouseleave', () => this.startAutoSlide());
-
-      // Evento de redimensionamento para ajustar a posição do slide
-      window.addEventListener('resize', () => this.updateCarousel());
-  }
-
-  // 6. Inicialização
-
+  
+  // 6. Inicialização (Agrupando lógica de attachEventListeners)
   private initialize(): void {
-      this.attachEventListeners();
-      this.updateCarousel(); // Ajusta a posição inicial
-      this.startAutoSlide(); // Inicia o timer
+    // O Angular usa o template HTML para anexar eventos (veja o HTML de exemplo abaixo)
+    this.updateCarousel();
+    this.startAutoSlide(); 
+  }
+
+  // Funções de manipulação de mouse (que serão chamadas no HTML)
+  public onMouseEnter(): void {
+    this.stopAutoSlide();
+  }
+
+  public onMouseLeave(): void {
+    this.startAutoSlide();
   }
 }
-
-// Inicialização do Carrossel: Aguarda o carregamento do DOM para instanciar a classe.
-document.addEventListener('DOMContentLoaded', () => {
-  // Cria uma nova instância da classe Carousel, usando o seletor da div principal.
-  new carrosel('.carrosel');
-});
-  

@@ -1,18 +1,23 @@
 <main>
+    <section class="conteudo-principal">
+        <div #carouselContainer class="carrosel" 
+             (mouseenter)="onMouseEnter()" 
+             (mouseleave)="onMouseLeave()"
+             (window:resize)="updateCarousel()"> 
+
+            <div #carouselImages class="carousel-images">
+                <img src="/assets/IMG/2021-lamborghini-huraca-n-sto-112-1628181687.jpg" alt="Slide 1">
+                <img src="/assets/IMG/2021-Mercedes-AMG-GT-Black-Series-009-2160-scaled.jpg" alt="Slide 2">
+                <img src="/assets/IMG/Porsche 911 Carrera T parked in a courtyard.jpg" alt="Slide 3">
+            </div>
+
+            <button #prevButton class="prev" (click)="prevSlide()">&#10094;</button>
+            <button #nextButton class="next" (click)="nextSlide()">&#10095;</button>
+        </div>
+    </section>
+
     <div class="eventos">
         <h2>Eventos</h2>
         <p>Aba lateral para eventos.</p>
     </div>
-
-    <section class="conteudo-principal">
-        <div class="carrosel">
-             <button class="prev">◀</button>
-                <div class="carousel-images">
-                    <img src="../IMG/2021-lamborghini-huraca-n-sto-112-1628181687.jpg" alt="Imagem 1">
-                    <img src="../IMG/Porsche 911 Carrera T parked in a courtyard.jpg" alt="Imagem 2">
-                    <img src="../IMG/2021-Mercedes-AMG-GT-Black-Series-009-2160-scaled.jpg" alt="Imagem 3">
-                </div>
-            <button class="next">▶</button>
-        </div>
-    </section>
 </main>
