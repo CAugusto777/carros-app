@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-
+import { Component, OnInit, OnDestroy, ElementRef, viewChild } from '@angular/core';
 @Component({
   selector: 'app-home',
   imports: [],
@@ -9,16 +8,14 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 export class CarrosselComponent implements OnInit, OnDestroy { // Nome de classe PascalCase
 
   // Acessa o elemento DOM principal referenciado com #carouselContainer no HTML
-  @ViewChild('carouselContainer', { static: true }) 
-  private containerRef!: ElementRef<HTMLElement>; 
+  private readonly containerRef = viewChild.required<ElementRef<HTMLElement>>('carouselContainer'); 
 
   // Acessa a div interna das imagens
-  @ViewChild('carouselImages', { static: true }) 
-  private imagesRef!: ElementRef<HTMLElement>; 
+  private readonly imagesRef = viewChild.required<ElementRef<HTMLElement>>('carouselImages'); 
 
   // Referências para os botões
-  @ViewChild('prevButton') private prevButton!: ElementRef<HTMLElement>;
-  @ViewChild('nextButton') private nextButton!: ElementRef<HTMLElement>;
+  private readonly prevButton = viewChild.required<ElementRef<HTMLElement>>('prevButton');
+  private readonly nextButton = viewChild.required<ElementRef<HTMLElement>>('nextButton');
 
   // 1. Variáveis de Estado
   private currentIndex: number = 0;
@@ -29,7 +26,7 @@ export class CarrosselComponent implements OnInit, OnDestroy { // Nome de classe
   // 2. Método do Ciclo de Vida: Inicialização
   ngOnInit(): void {
     // Busca as imagens dentro do contêiner após a view ser inicializada
-    const images = this.imagesRef.nativeElement.querySelectorAll('img');
+    const images = this.imagesRef().nativeElement.querySelectorAll('img');
     this.totalImages = images.length;
 
     if (this.totalImages <= 1) {
@@ -50,14 +47,16 @@ export class CarrosselComponent implements OnInit, OnDestroy { // Nome de classe
   
   public updateCarousel(): void {
     // VERIFICAÇÃO DE SEGURANÇA
-    if (!this.containerRef || !this.imagesRef) {
+    const imagesRef = this.imagesRef();
+    const containerRef = this.containerRef();
+    if (!containerRef || !imagesRef) {
         console.error('Erro: Elementos do Carrossel não carregados (containerRef ou imagesRef).');
         return; 
     }
     
     // Acesso ao elemento nativo
-    const containerEl = this.containerRef.nativeElement;
-    const imagesEl = this.imagesRef.nativeElement;
+    const containerEl = containerRef.nativeElement;
+    const imagesEl = imagesRef.nativeElement;
     
     // 1. Calcula a largura do contêiner (e, portanto, de um slide)
     const containerWidth: number = containerEl.clientWidth; 
