@@ -1,22 +1,113 @@
-.conteudo-principal {
+/* Importação da fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap' );
+
+/* Estilos da Seção Principal */
+main {
     display: flex;
-    flex: 1;
-    justify-content: space-between;
+    padding-top: 20px;
 }
 
-.carrosel {
-    flex: 2; /* O carrossel ocupa mais espaço que a div de eventos */
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-/* Estilos da div de Eventos (fixada à direita) */
+/* Div de Eventos (agora com cores da paleta e fixo) */
 .eventos {
-    flex: 1; /* A div de eventos ocupa uma parte menor do espaço */
-    background-color: #f0f0f0;
+    width: 250px;
+    height: 700px;
+    flex-shrink: 0;
+    background-color: #FFFFFF; /* Fundo branco para se destacar levemente do cinza */
+    border: 1px solid #E5E7EB; /* Borda sutil */
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    margin-left: 20px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.eventos h2 {
+    color: #10B981; /* Secundária: Título da seção de eventos em verde */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #E5E7EB;
+    padding-bottom: 10px;
+}
+
+/* Conteúdo principal que contém o carrossel */
+.conteudo-principal {
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+/* Carrossel */
+.carrosel {
+    width: 70%; /* Ocupa 70% do espaço do seu container (.conteudo-principal) */
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-images img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Botões do Carrossel */
+.carrosel .prev,
+.carrosel .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(17, 24, 39, 0.6);
+    color: #F9FAFB;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 5;
+    transition: background-color 0.3s ease;
+}
+
+.carrosel .prev:hover,
+.carrosel .next:hover {
+    background-color: #3B82F6;
+}
+
+.carrosel .prev { left: 15px; }
+.carrosel .next { right: 15px; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+   
+
+    .eventos {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin: 0 0 20px 0;
+    }
+
+    .conteudo-principal {
+        padding: 0;
+    }
+
+    .carrosel {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .carrosel .prev,
+    .carrosel .next {
+        padding: 8px;
+        width: 35px;
+        height: 35px;
+    }
 }
