@@ -7,10 +7,12 @@ import { CompararCarros } from './comparar-carros/comparar-carros';
 import { Contato } from './contato/contato';
 import { PagPorsche } from './pag-porsche/pag-porsche';
 import { PagMercedes } from './pag-mercedes/pag-mercedes';
+import { PagFord } from './pag-ford/pag-ford';
 import { PagLambo } from './pag-lambo/pag-lambo';
 import { Marcablindagem } from './marcablindagem/marcablindagem';
 import { BlindagemGlobal } from './blindagem-global/blindagem-global';
 import { BlindagemSbi } from './blindagem-sbi/blindagem-sbi';
+import { Component } from '@angular/core';
 
 
 
@@ -22,6 +24,7 @@ export const routes: Routes = [
   { path: 'comparar-carros', component: CompararCarros },
   { path: 'contato', component: Contato },
   { path: 'Porsche', component: PagPorsche},
+  {path: 'Ford', component: PagFord},
   { path: 'Mercedes', component: PagMercedes},
   { path: 'Lamborghini', component: PagLambo},
   { path: 'Blindagem' , component: Marcablindagem},
