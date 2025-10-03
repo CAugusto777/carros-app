@@ -1,11 +1,129 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+interface SuggestionForm {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  category: string;
+  message: string;
+  priority: string;
+  newsletter: boolean;
+}
 
 @Component({
   selector: 'app-contato',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './contato.html',
   styleUrl: './contato.css'
 })
 export class Contato {
+  suggestionForm: SuggestionForm = {
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    category: 'geral',
+    message: '',
+    priority: 'normal',
+    newsletter: false
+  };
 
+  isSubmitting = false;
+  submitSuccess = false;
+  submitError = false;
+
+  categories = [
+    { value: 'geral', label: 'Sugestão Geral' },
+    { value: 'servicos', label: 'Serviços' },
+    { value: 'vendas', label: 'Vendas' },
+    { value: 'blindagem', label: 'Blindagem' },
+    { value: 'manutencao', label: 'Manutenção' },
+    { value: 'parceria', label: 'Parceria' },
+    { value: 'reclamacao', label: 'Reclamação' },
+    { value: 'elogio', label: 'Elogio' }
+  ];
+
+  priorities = [
+    { value: 'baixa', label: 'Baixa' },
+    { value: 'normal', label: 'Normal' },
+    { value: 'alta', label: 'Alta' },
+    { value: 'urgente', label: 'Urgente' }
+  ];
+
+  onSubmit() {
+    if (this.isFormValid()) {
+      this.isSubmitting = true;
+      this.submitError = false;
+      
+      // Simular envio do formulário
+      setTimeout(() => {
+        this.isSubmitting = false;
+        this.submitSuccess = true;
+        this.resetForm();
+        
+        // Esconder mensagem de sucesso após 5 segundos
+        setTimeout(() => {
+          this.submitSuccess = false;
+        }, 5000);
+      }, 2000);
+    }
+  }
+
+  isFormValid(): boolean {
+    return !!(
+      this.suggestionForm.name.trim() &&
+      this.suggestionForm.email.trim() &&
+      this.suggestionForm.subject.trim() &&
+      this.suggestionForm.message.trim() &&
+      this.isValidEmail(this.suggestionForm.email)
+    );
+  }
+
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  resetForm() {
+    this.suggestionForm = {
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      category: 'geral',
+      message: '',
+      priority: 'normal',
+      newsletter: false
+    };
+  }
+
+  formatPhone(event: any) {
+    let value = event.target.value.replace(/\D/g, '');
+    
+    if (value.length <= 11) {
+      if (value.length <= 2) {
+        value = value.replace(/(\d{0,2})/, '($1');
+      } else if (value.length <= 7) {
+        value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+      } else {
+        value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+      }
+    }
+    
+    this.suggestionForm.phone = value;
+  }
+
+  getCharacterCount(): number {
+    return this.suggestionForm.message.length;
+  }
+
+  getCharacterCountClass(): string {
+    const count = this.getCharacterCount();
+    if (count > 450) return 'text-danger';
+    if (count > 400) return 'text-warning';
+    return 'text-muted';
+  }
 }
