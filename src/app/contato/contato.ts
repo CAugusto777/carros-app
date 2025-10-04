@@ -11,6 +11,7 @@ interface SuggestionForm {
   message: string;
   priority: string;
   newsletter: boolean;
+  lgpdAccepted: boolean;
 }
 
 @Component({
@@ -28,7 +29,8 @@ export class Contato {
     category: 'geral',
     message: '',
     priority: 'normal',
-    newsletter: false
+    newsletter: false,
+    lgpdAccepted: false
   };
 
   isSubmitting = false;
@@ -72,8 +74,8 @@ export class Contato {
     return !!(
       this.suggestionForm.name.trim() &&
       this.suggestionForm.email.trim() &&
-      this.suggestionForm.subject.trim() &&
       this.suggestionForm.message.trim() &&
+      this.suggestionForm.lgpdAccepted &&
       this.isValidEmail(this.suggestionForm.email)
     );
   }
@@ -92,7 +94,8 @@ export class Contato {
       category: 'geral',
       message: '',
       priority: 'normal',
-      newsletter: false
+      newsletter: false,
+      lgpdAccepted: false
     };
   }
 

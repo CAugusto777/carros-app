@@ -7,9 +7,7 @@
                 <p>Sua opinião é muito importante para nós. Envie suas sugestões, dúvidas ou comentários.</p>
             </div>
 
-            <div class="content-wrapper">
-
-
+            <div class="content-wrapper-centered">
                 <!-- Formulário de Sugestões -->
                 <div class="suggestion-form">
                     <h2>Formulário de Sugestões</h2>
@@ -144,14 +142,15 @@
                             </label>
                         </div>
 
-                           <div class="form-group checkbox-group">
+                        <div class="form-group checkbox-group">
                             <label class="checkbox-label">
                                 <input 
                                     type="checkbox" 
-                                    name="newsletter"
-                                    [(ngModel)]="suggestionForm.newsletter">
+                                    name="lgpdAccepted"
+                                    [(ngModel)]="suggestionForm.lgpdAccepted"
+                                    required>
                                 <span class="checkmark"></span>
-                                Aceita Termos e condições conforme LGPD.
+                                Aceito os Termos e Condições conforme LGPD *
                             </label>
                         </div>
 

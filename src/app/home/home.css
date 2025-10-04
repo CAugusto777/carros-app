@@ -38,28 +38,35 @@ main {
 
 /* Carrossel */
 .carrosel {
-    width: 70%; /* Ocupa 70% do espaço do seu container (.conteudo-principal) */
+    width: 80%; /* Aumentado para 80% do espaço do container */
+    max-width: 1000px; /* Largura máxima para telas grandes */
     margin: 0 auto;
     overflow: hidden;
     position: relative;
     border-radius: 12px; /* Bordas mais arredondadas */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    height: 500px; /* Altura fixa para o carrossel */
+    height: 450px; /* Altura ajustada para melhor proporção */
 }
 
 .carousel-images {
     display: flex;
     transition: transform 0.4s ease-in-out;
     height: 100%;
+    /* A largura total será calculada pelo TypeScript, mas garantimos que ela possa acomodar todas as imagens */
+    /* width: 100%; */ /* Removido para evitar conflito com o cálculo do TS */
 }
 
 .carousel-images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    flex-shrink: 0;
+   width: 100%; /* Mantenha esta propriedade */
+    height: 100%; /* Mantenha esta propriedade */
+    object-fit: cover; 
+    object-position: center;
+    
+    /* Adicione ou ajuste estas propriedades flex */
+    flex-shrink: 0; /* Impede que a imagem encolha */
+    flex-grow: 0; /* Impede que a imagem cresça */
+    flex-basis: 100%; /* Define o tamanho base da imagem como 100% do contêiner flex */
 }
-
 /* Botões do Carrossel */
 .carrosel .prev,
 .carrosel .next {
@@ -130,34 +137,49 @@ main {
     .carrosel .next { right: 15px; }
 }
 
-.home-text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    color: white;
+/* Seção de texto acima do carrossel */
+.home-text-section {
     text-align: center;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    pointer-events: none; /* Permite cliques passarem para o carrossel */
+    margin-bottom: 40px;
+    padding: 20px;
 }
 
-.home-text-overlay h1 {
+.home-text-section h1 {
     font-family: 'WDXL Lubrifont TC', sans-serif;
     font-size: 3.5rem;
-    margin: 0;
+    margin: 0 0 20px 0;
     line-height: 1.2;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.home-text-section p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-    .home-text-overlay h1 {
+    .home-text-section h1 {
         font-size: 2.5rem;
+    }
+    
+    .home-text-section p {
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .home-text-overlay h1 {
+    .home-text-section h1 {
         font-size: 1.8rem;
     }
+    
+    .home-text-section p {
+        font-size: 1rem;
+    }
 }
-

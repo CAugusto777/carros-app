@@ -7,36 +7,18 @@ footer {
     bottom: 0;
     left: 0;
     z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     margin-top: 40px;
     border-top: 4px solid #10B981;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.redeSocial {
+.footer-content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
-}
-
-.redeSocial p {
-    margin: 0;
-    font-weight: bold;
-    color: #F9FAFB;
-}
-
-.redeSocial img {
-    height: 30px;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-
-.redeSocial a:hover img {
-    opacity: 1;
-    transform: scale(1.2);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logoFinal img {
@@ -49,29 +31,31 @@ footer {
     transform: scale(1.05);
 }
 
+.footer-info p {
+    margin: 0;
+    color: #F9FAFB;
+    font-size: 0.9rem;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     footer {
         position: static;
+        padding: 15px;
+    }
+
+    .footer-content {
         flex-direction: column;
         gap: 15px;
-        padding: 15px;
         text-align: center;
-    }
-
-    .redeSocial {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .redeSocial p {
-        width: 100%;
-        margin-bottom: 10px;
     }
 
     .logoFinal img {
         height: 40px;
+    }
+
+    .footer-info p {
+        font-size: 0.8rem;
     }
 }
 
@@ -80,11 +64,11 @@ footer {
         padding: 10px;
     }
 
-    .redeSocial img {
-        height: 25px;
-    }
-
     .logoFinal img {
         height: 35px;
+    }
+
+    .footer-info p {
+        font-size: 0.75rem;
     }
 }
