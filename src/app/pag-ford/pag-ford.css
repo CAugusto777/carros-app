@@ -1,7 +1,8 @@
 .meioFerrari {
     padding: 20px;
-    margin-bottom: 120px; /* Espaço para o footer fixo */
+    margin-bottom: 100px; /* Espaço para o footer fixo */
     min-height: calc(100vh - 140px);
+    background: linear-gradient(135deg, #e3e4e6 0%, #c3cfe2 100%);
 }
 
 .meioFerrari > div {
@@ -24,7 +25,7 @@
     max-width: 250px;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
+    box-shadow: 0 4px 12px #c3cfe2;
 }
 
 .textoferrari {
@@ -36,7 +37,7 @@
     padding: 20px;
     background: linear-gradient(135deg, #bec3cf 0%, #6b8dad 100%);
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(220, 20, 60, 0.2);
+    box-shadow: 0 2px 8px #c3cfe2; ;
     border-left: 4px solid #081534;
 }
 

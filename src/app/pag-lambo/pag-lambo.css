@@ -4,6 +4,7 @@
     padding: 20px;
     margin-bottom: 120px; /* Espaço para o footer fixo */
     min-height: calc(100vh - 140px);
+     background: linear-gradient(135deg, #111111 0%, #b1a503a1 100%);
 }
 
 .meioLambo > div {

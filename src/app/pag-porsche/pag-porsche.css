@@ -2,6 +2,7 @@
     padding: 20px;
     margin-bottom: 120px; /* Espaço para o footer fixo */
     min-height: calc(100vh - 140px);
+    background: linear-gradient(135deg, #8b8b8b 0%, #d0d1d3 100%);
 }
 
 .meioPorshe > div {
