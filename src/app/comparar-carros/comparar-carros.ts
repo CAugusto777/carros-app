@@ -55,7 +55,7 @@ export class CompararCarros implements OnInit, OnDestroy {
       velocidadeFinal: "325 km/h",
       aceleracao: "2.5 segundos",
       cor: "Performance White",
-      imagem: "/src/assets/IMG/Mustang-GTD-Spirit-of-America-2025_2.jpg"
+      imagem: "assets/IMG/Mustang-GTD-Spirit-of-America-2025_2.jpg"
     },
     5: {
       nome: "Audi R8 V10 Plus",
@@ -64,7 +64,7 @@ export class CompararCarros implements OnInit, OnDestroy {
       velocidadeFinal: "330 km/h",
       aceleracao: "3.1 segundos",
       cor: "Cinza Nardo",
-      imagem: "/src/assets/IMG/2020-audi-r8.jpg"
+      imagem: "assets/IMG/2020-audi-r8.jpg"
     },
     6: {
       nome: "Lamborghini Aventador SVJ",
@@ -73,7 +73,7 @@ export class CompararCarros implements OnInit, OnDestroy {
       velocidadeFinal: "350 km/h",
       aceleracao: "2.8 segundos",
       cor: "Verde Scandal",
-      imagem: "/src/assets/IMG/Verde Scandal.png"
+      imagem: "assets/IMG/Verde Scandal.png"
     },
     7: {
       nome: "Porsche 911 Turbo S",
@@ -82,7 +82,7 @@ export class CompararCarros implements OnInit, OnDestroy {
       velocidadeFinal: "330 km/h",
       aceleracao: "2.7 segundos",
       cor: "Azul Gentian",
-      imagem: "/src/assets/IMG/porshe911-6104A1.jpg"
+      imagem: "assets/IMG/porshe911-6104A1.jpg"
     },
     8: {
       nome: "Mercedes-Benz SLS AMG",
@@ -91,7 +91,7 @@ export class CompararCarros implements OnInit, OnDestroy {
       velocidadeFinal: "317 km/h",
       aceleracao: "3.7 segundos",
       cor: "Prata Iridium",
-      imagem: "/src/assets/IMG/mercedes-benz-sls-amg-black-series-.jpg"
+      imagem: "assets/IMG/mercedes-benz-sls-amg-black-series-.jpg"
     }
   };
 
