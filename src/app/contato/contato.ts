@@ -37,10 +37,6 @@ export class Contato {
 
   categories = [
     { value: 'geral', label: 'Sugestão Geral' },
-    { value: 'servicos', label: 'Serviços' },
-    { value: 'vendas', label: 'Vendas' },
-    { value: 'blindagem', label: 'Blindagem' },
-    { value: 'manutencao', label: 'Manutenção' },
     { value: 'parceria', label: 'Parceria' },
     { value: 'reclamacao', label: 'Reclamação' },
     { value: 'elogio', label: 'Elogio' }
