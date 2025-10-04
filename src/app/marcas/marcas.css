@@ -1,3 +1,6 @@
+main{
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
 .meio {
     display: flex;
     flex-direction: column;
@@ -6,6 +9,7 @@
     min-height: calc(100vh - 140px);
     padding: 20px;
     margin-bottom: 120px; /* Espaço para o footer fixo */
+    
 }
 
 .titulo {

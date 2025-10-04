@@ -5,6 +5,7 @@
 main {
     display: flex;
     padding-top: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 /* Div de Eventos (agora com cores da paleta e fixo) */
@@ -38,14 +39,14 @@ main {
 
 /* Carrossel */
 .carrosel {
-    width: 80%; /* Aumentado para 80% do espaço do container */
-    max-width: 1000px; /* Largura máxima para telas grandes */
+    width: 80%;
+    max-width: 1000px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-    border-radius: 12px; /* Bordas mais arredondadas */
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    height: 450px; /* Altura ajustada para melhor proporção */
+    height: 450px;
 }
 
 .carousel-images {
@@ -55,16 +56,14 @@ main {
     width: 100%;
 }
 
+/* ESTILO CORRIGIDO PARA AS IMAGENS */
 .carousel-images img {
-   width: 100%; /* Mantenha esta propriedade */
-    height: 100%; /* Mantenha esta propriedade */
+    min-width: 100%; /* Garante que cada imagem ocupe 100% da largura do carrossel */
+    min-height: auto;
     object-fit: cover; 
     object-position: center;
-    
-    /* Adicione ou ajuste estas propriedades flex */
-    flex-shrink: 0; /* Impede que a imagem encolha */
-    flex-grow: 0; /* Impede que a imagem cresça */
-    flex-basis: 100%; /* Define o tamanho base da imagem como 100% do contêiner flex */
+    flex-shrink: 0;
+    display: block;
 }
 /* Botões do Carrossel */
 .carrosel .prev,

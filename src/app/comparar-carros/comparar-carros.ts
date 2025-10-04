@@ -37,7 +37,7 @@ export class CompararCarros implements OnInit, OnDestroy {
       velocidadeFinal: "310 km/h",
       aceleracao: "3.0 segundos",
       cor: "Verde Mantis",
-      imagem: "assets/IMG/Porsche 911 Carrera T parked in a courtyard.jpg"
+      imagem: "assets/IMG/STOVerde Mantis.jpg"
     },
     3: {
       nome: "Porsche 911 Carrera T",
@@ -101,6 +101,10 @@ export class CompararCarros implements OnInit, OnDestroy {
   // Estado do modal
   modalAberto = false;
 
+  // Estado do modal de alerta
+  alertaAberto = false;
+  mensagemAlerta = '';
+
   ngOnInit(): void {
     // Inicialização do componente
   }
@@ -108,6 +112,7 @@ export class CompararCarros implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Limpeza se necessário
     this.fecharModal();
+    this.fecharAlerta();
   }
 
   // Verificar se um carro está selecionado
@@ -169,16 +174,33 @@ export class CompararCarros implements OnInit, OnDestroy {
     document.body.style.overflow = 'auto'; // Restaurar scroll do body
   }
 
-  // Mostrar alerta (pode ser substituído por um toast ou modal personalizado)
+  // Mostrar alerta personalizado
   private mostrarAlerta(mensagem: string): void {
-    alert(mensagem);
+    this.mensagemAlerta = mensagem;
+    this.alertaAberto = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Fechar alerta
+  fecharAlerta(event?: Event): void {
+    // Se o evento foi passado, verificar se o clique foi no backdrop
+    if (event && event.target !== event.currentTarget) {
+      return;
+    }
+    
+    this.alertaAberto = false;
+    document.body.style.overflow = 'auto';
   }
 
   // Listener para tecla ESC
   @HostListener('document:keydown', ['$event'])
   onEscapeKey(event: KeyboardEvent): void {
-    if (event.key === 'Escape' && this.modalAberto) {
-      this.fecharModal();
+    if (event.key === 'Escape') {
+      if (this.modalAberto) {
+        this.fecharModal();
+      } else if (this.alertaAberto) {
+        this.fecharAlerta();
+      }
     }
   }
 
