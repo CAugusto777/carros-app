@@ -1,4 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
 
+main{
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 main {
     padding: 40px 20px;
     margin-bottom: 120px; /* Espaço para o footer fixo */
@@ -66,6 +78,7 @@ main > div > div:hover img {
 main > div > div h3 {
     font-size: 24px;
     font-weight: bold;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
     color: #333;
     margin: 0;
     text-transform: uppercase;

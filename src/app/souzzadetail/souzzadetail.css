@@ -3,7 +3,7 @@ body{
     padding: 0;
     min-height: 100vh;
     overflow-y: auto;
-    background: #2172be;
+ 
 }
 
 main{
@@ -67,6 +67,7 @@ main{
     line-height: 1.8;
     text-align: justify;
     color: #2172be;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
     padding: 20px;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 10px;

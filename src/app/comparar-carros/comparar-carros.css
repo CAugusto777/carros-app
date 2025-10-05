@@ -13,6 +13,7 @@ main{
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 10px;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
     color: #333;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -27,6 +28,7 @@ main{
     font-size: 1.1rem;
     color: #666;
     margin-bottom: 40px;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
 }
 
 /* Grid de Carros */

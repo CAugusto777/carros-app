@@ -50,6 +50,7 @@ main{
     font-size: 18px;
     line-height: 1.8;
     text-align: justify;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
     color: #333;
     padding: 20px;
     background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);

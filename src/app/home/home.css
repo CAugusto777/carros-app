@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap");
 body{
     margin: 0;
     padding: 0;
@@ -6,7 +7,7 @@ body{
 }
 
 /* Importação da fonte do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap' );
+
 
 /* Estilos da Seção Principal */
 main {

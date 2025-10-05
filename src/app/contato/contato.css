@@ -30,6 +30,7 @@ main{
 .page-header {
     text-align: center;
     margin-bottom: 60px;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
 }
 
 .page-header h1 {
