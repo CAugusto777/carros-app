@@ -1,26 +1,26 @@
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
 main{
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
+
 .galeria-section {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 140px);
+    margin-bottom: 60px;
 }
 
-.galeria-section h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    
-}
+/* ... resto do CSS permanece igual ... */
 
 /* Estilos do Carrossel */
 .carousel-container {

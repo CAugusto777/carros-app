@@ -1,9 +1,20 @@
-/* Estilos específicos para a página da Porsche */
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+main{
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
 .meioPerfDetail {
     padding: 20px;
-    margin-bottom: 120px; /* Espaço para o footer fixo */
-    min-height: calc(100vh - 140px);
+    margin-bottom: 60px;
+    min-height: calc(100vh - 80px);
 }
 
 .meioPerfDetail > div {
@@ -13,6 +24,7 @@
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 100%;
 }
 
 .logo-texto-container {
