@@ -36,7 +36,7 @@ main {
 }
 
 .eventos h2 {
-    color: #10B981; /* Secundária: Título da seção de eventos em verde */
+    color: #3B82F6; /* Secundária: Título da seção de eventos em verde */
     margin-bottom: 15px;
     border-bottom: 2px solid #E5E7EB;
     padding-bottom: 10px;
@@ -159,7 +159,7 @@ main {
     margin: 0 0 20px 0;
     line-height: 1.2;
     color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #4b67a2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

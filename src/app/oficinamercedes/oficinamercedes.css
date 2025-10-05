@@ -16,6 +16,7 @@ main{
     padding: 20px;
     margin-bottom: 60px;
     min-height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #e2e4e7 0%, #0f1011 100%);
 }
 
 .meioMercedes > div {
