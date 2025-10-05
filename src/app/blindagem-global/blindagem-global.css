@@ -1,7 +1,21 @@
+body{
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+main{
+    background: linear-gradient(135deg, #f5f7fa 0%, #4d5057 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
 .blindagemGlobal {
     padding: 20px;
-    margin-bottom: 120px; /* Espaço para o footer fixo */
-    min-height: calc(100vh - 140px);
+    margin-bottom: 60px; /* Reduzi de 120px para 60px */
+    min-height: calc(100vh - 80px); /* Ajuste na altura mínima */
 }
 
 .blindagemGlobal > div {
@@ -11,6 +25,7 @@
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 100%; /* Adicionei esta linha */
 }
 
 /* Container para logo e texto lado a lado */
@@ -175,6 +190,7 @@
     
     .blindagemGlobal {
         padding: 15px;
+        margin-bottom: 40px; /* Ajuste para mobile */
     }
     
     .imagem-mapa-container {
@@ -220,5 +236,9 @@
     
     .mapa-container iframe {
         height: 250px;
+    }
+    
+    .blindagemGlobal {
+        margin-bottom: 30px; /* Ajuste final para mobile */
     }
 }
