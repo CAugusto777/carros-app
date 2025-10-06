@@ -3,12 +3,8 @@ footer {
     color: #F9FAFB;
     padding: 20px;
     
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
+
     width: 100%;
-    margin-top: 40px;
     border-top: 4px solid #3B82F6;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -40,7 +36,7 @@ footer {
 /* Responsividade */
 @media (max-width: 768px) {
     footer {
-        position: static;
+    
         padding: 15px;
     }
 

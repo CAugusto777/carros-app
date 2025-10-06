@@ -52,6 +52,18 @@ main {
     min-height: calc(100vh - 140px);
     padding: 2rem;
 }
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
 
 .conteudo-principal {
     max-width: 1200px;
