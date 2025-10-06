@@ -7,15 +7,17 @@ body{
 
 main{
     background: linear-gradient(135deg, #f5f7fa 0%, #4d5057 100%);
+    background-attachment: fixed; /* ADICIONADO */
     min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
 .blindagemGlobal {
-    padding: 20px;
-    margin-bottom: 60px; /* Reduzi de 120px para 60px */
-    min-height: calc(100vh - 80px); /* Ajuste na altura mínima */
+    padding: 40px 20px;
+    margin-bottom: 0; /* REMOVIDO */
+    min-height: 100vh; /* ALTERADO */
+    background: transparent; /* REMOVIDO - já está no main */
 }
 
 .blindagemGlobal > div {

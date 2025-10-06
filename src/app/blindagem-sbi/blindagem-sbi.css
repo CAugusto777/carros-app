@@ -1,8 +1,21 @@
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+main{
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 .blindagemSbi {
-    padding: 20px;
-    margin-bottom: 120px; /* Espaço para o footer fixo */
-    min-height: calc(100vh - 140px);
+    padding: 40px 20px;
+    margin-bottom: 0; /* REMOVIDO */
+    min-height: 100vh; /* ALTERADO */
     background: linear-gradient(135deg, #b3b4b6 0%, #dde785 100%);
+    background-attachment: fixed;
 }
 
 .blindagemSbi > div {

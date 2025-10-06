@@ -11,12 +11,12 @@ main{
     padding: 0;
 }
 
-/* Estilos específicos para a página da Porsche */
 .meioPorshe {
-    padding: 20px;
-    margin-bottom: 60px;
-    min-height: calc(100vh - 80px);
+    padding: 40px 20px;
+    margin-bottom: 0; /* REMOVIDO */
+    min-height: 100vh; /* ALTERADO */
     background: linear-gradient(135deg, #8b8b8b 0%, #d0d1d3 100%);
+    background-attachment: fixed;
 }
 
 .meioPorshe > div {

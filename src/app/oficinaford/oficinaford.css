@@ -11,15 +11,15 @@ main{
     padding: 0;
 }
 
-/* Estilos específicos para a página da Porsche */
-.meioford {
-    padding: 20px;
-    margin-bottom: 60px;
-    min-height: calc(100vh - 80px);
-    background: linear-gradient(135deg, #e3e4e6 0%, #c3cfe2 100%);
+.meioFord {
+    padding: 40px 20px;
+    margin-bottom: 0; /* REMOVIDO */
+    min-height: 100vh; /* ALTERADO */
+    background: linear-gradient(135deg, #8b8b8b 0%, #d0d1d3 100%);
+    background-attachment: fixed;
 }
 
-.meioford > div {
+.meioFord > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,6 +31,7 @@ main{
 
 /* ... resto do CSS permanece igual ... */
 
+
 .logo-texto-container {
     display: flex;
     align-items: center;
@@ -38,21 +39,21 @@ main{
     width: 100%;
 }
 
-.imgford img {
+.imgFord img {
     max-width: 250px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.textoford {
+.textoFord {
     flex: 1;
     font-size: 18px;
     line-height: 1.8;
     text-align: justify;
     color: #333;
-    padding: 20px;
     font-family: 'WDXL Lubrifont TC', sans-serif;
+    padding: 20px;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -67,7 +68,7 @@ main{
     width: 100%;
 }
 
-.carro-container, .mapPorsheSSA {
+.carro-container, .mapFordSSA {
     flex: 1; /* Faz com que ambos os elementos ocupem o espaço disponível igualmente */
     width: 100%;
 }
@@ -84,7 +85,7 @@ main{
     transform: scale(1.02);
 }
 
-.mapfordSSA iframe {
+.mapFordSSA iframe {
     width: 100%;
     height: 100%;
     min-height: 450px; /* Altura mínima para o mapa */
@@ -108,16 +109,16 @@ main{
         gap: 20px;
     }
     
-    .textoford {
+    .textoFord {
         text-align: center;
         font-size: 16px;
     }
     
-    .imgford img {
+    .imgFord img {
         max-width: 200px;
     }
     
-    .meioford {
+    .meioFord {
         padding: 15px;
     }
 }

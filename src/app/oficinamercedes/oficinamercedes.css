@@ -11,12 +11,12 @@ main{
     padding: 0;
 }
 
-/* Estilos específicos para a página da Porsche */
 .meioMercedes {
-    padding: 20px;
-    margin-bottom: 60px;
-    min-height: calc(100vh - 80px);
-    background: linear-gradient(135deg, #e2e4e7 0%, #0f1011 100%);
+    padding: 40px 20px;
+    margin-bottom: 0; /* REMOVIDO */
+    min-height: 100vh; /* ALTERADO */
+    background: linear-gradient(135deg, #8b8b8b 0%, #d0d1d3 100%);
+    background-attachment: fixed;
 }
 
 .meioMercedes > div {
@@ -117,7 +117,7 @@ main{
         max-width: 200px;
     }
     
-    .Mercedesrshe {
+    .meioMercedes {
         padding: 15px;
     }
 }
