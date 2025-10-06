@@ -13,8 +13,8 @@ main{
 
 
 .meioLambo {
-    padding: 20px;
-    margin-bottom: 60px;
+    padding: 80px;
+    margin-bottom: 60px; /* Espaço para o footer fixo */
     min-height: calc(100vh - 80px);
      background: linear-gradient(135deg, #111111 0%, #b1a503a1 100%);
 }

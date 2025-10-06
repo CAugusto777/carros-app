@@ -10,9 +10,10 @@ main{
     margin: 0;
     padding: 0;
 }
+
 .meiomercedes {
-    padding: 20px;
-    margin-bottom: 120px; /* Espaço para o footer fixo */
+    padding: 50px;
+    margin-bottom: 90px; /* Espaço para o footer fixo */
     min-height: calc(100vh - 140px);
     background: linear-gradient(135deg, #e2e4e7 0%, #0f1011 100%);
 }
