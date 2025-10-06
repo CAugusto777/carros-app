@@ -3,6 +3,7 @@ body{
     padding: 0;
     min-height: 100vh;
     overflow-y: auto;
+     background: linear-gradient(135deg, #e3e4e6 0%, #c3cfe2 100%);
 }
 
 main{
@@ -11,24 +12,22 @@ main{
     padding: 0;
 }
 
-.meioFerrari {
-    padding: 80px;
-    margin-bottom: 60px; /* Espaço para o footer fixo */
-    min-height: calc(100vh - 140px);
-    background: linear-gradient(135deg, #e3e4e6 0%, #c3cfe2 100%);
+.meioford {
+    padding: 40px 20px;
+    margin-bottom: 0; /* REMOVIDO */
+    min-height: 100vh; /* ALTERADO */
+    
+    background-attachment: fixed;
 }
 
-.meioFerrari > div {
+.meioford > div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: 100%;
 }
-
-
 
 .logo-texto-container {
     display: flex;
@@ -37,25 +36,25 @@ main{
     width: 100%;
 }
 
-.imgferrari img {
+.imgford img {
     max-width: 250px;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 12px #c3cfe2;
+    box-shadow: 0 4px 12px rgba(128, 128, 128, 0.3);
 }
 
-.textoferrari {
+.textoford {
     flex: 1;
     font-size: 18px;
     line-height: 1.8;
+    font-family: 'WDXL Lubrifont TC', sans-serif;
     text-align: justify;
     color: #333;
-    font-family: 'WDXL Lubrifont TC', sans-serif;
     padding: 20px;
-    background: linear-gradient(135deg, #bec3cf 0%, #6b8dad 100%);
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
     border-radius: 10px;
-    box-shadow: 0 2px 8px #c3cfe2; ;
-    border-left: 4px solid #081534;
+    box-shadow: 0 2px 8px rgba(128, 128, 128, 0.2);
+    border-left: 4px solid #808080;
 }
 
 .carro-container {
@@ -68,7 +67,7 @@ main{
     max-width: 900px;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(220, 20, 60, 0.25);
+    box-shadow: 0 8px 24px rgba(128, 128, 128, 0.25);
     transition: transform 0.3s ease;
 }
 
@@ -76,7 +75,7 @@ main{
     transform: scale(1.02);
 }
 
-/* Responsividade para a página da Ferrari */
+/* Responsividade para a página da ford */
 @media (max-width: 768px) {
     .logo-texto-container {
         flex-direction: column;
@@ -84,16 +83,16 @@ main{
         gap: 20px;
     }
     
-    .textoferrari {
+    .textoford {
         text-align: center;
         font-size: 16px;
     }
     
-    .imgferrari img {
+    .imgford img {
         max-width: 200px;
     }
     
-    .meioFerrari {
+    .meioford {
         padding: 15px;
     }
 }
