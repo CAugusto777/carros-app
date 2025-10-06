@@ -26,10 +26,10 @@ main{
     margin: 0 auto;
     padding: 40px 20px;
     min-height: calc(100vh - 140px);
-    margin-bottom: 60px;
+    
 }
 
-/* ... resto do CSS permanece igual ... */
+
 
 /* Estilos do Carrossel */
 .carousel-container {

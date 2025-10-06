@@ -15,7 +15,7 @@ main{
 .contato-section {
     min-height: calc(100vh - 140px);
     padding: 40px 0;
-    margin-bottom: 60px;
+    
 }
 
 /* ... resto do CSS permanece igual ... */
