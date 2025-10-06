@@ -24,8 +24,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "inlineFonts": false
+            ]
           },
           "configurations": {
             "production": {
@@ -41,12 +40,26 @@
                   "maximumError": "300kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": {
+                  "inline": false
+                }
+              }
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "optimization": {
+                "fonts": {
+                  "inline": false
+                }
+              }
             }
           },
           "defaultConfiguration": "production"
