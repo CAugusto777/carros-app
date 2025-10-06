@@ -402,15 +402,35 @@ main{
     
     .comparacao-container {
         flex-direction: column;
+        gap: 0;
     }
     
     .vs-divider {
-        transform: rotate(90deg);
+        transform: rotate(0deg);
         margin: 20px 0;
+        padding: 15px 0;
+        order: 1;
     }
     
     .vs-divider span {
         font-size: 2.5rem;
+        display: inline-block;
+        padding: 10px 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        border: 2px solid #667eea;
+        border-radius: 50px;
+    }
+
+    .carro-comparacao {
+        order: 0;
+        width: 100%;
+    }
+
+    .carro-comparacao:last-child {
+        order: 2;
     }
 }
 
