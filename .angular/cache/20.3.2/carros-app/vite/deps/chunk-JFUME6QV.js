@@ -6,7 +6,7 @@ import {
   getDOM,
   parseCookieValue,
   setRootDomAdapter
-} from "./chunk-RRYI367R.js";
+} from "./chunk-3SRXKMKJ.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_ID,
@@ -90,7 +90,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-F6OF3YBK.js";
+} from "./chunk-NLZIVNDD.js";
 import {
   __async,
   __objRest,
@@ -3670,30 +3670,18 @@ function normalizeRequest(request, responseType) {
 }
 var HttpResourceImpl = class extends ResourceImpl {
   client;
-  _headers = linkedSignal(...ngDevMode ? [{
-    debugName: "_headers",
+  _headers = linkedSignal({
     source: this.extRequest,
     computation: () => void 0
-  }] : [{
+  });
+  _progress = linkedSignal({
     source: this.extRequest,
     computation: () => void 0
-  }]);
-  _progress = linkedSignal(...ngDevMode ? [{
-    debugName: "_progress",
+  });
+  _statusCode = linkedSignal({
     source: this.extRequest,
     computation: () => void 0
-  }] : [{
-    source: this.extRequest,
-    computation: () => void 0
-  }]);
-  _statusCode = linkedSignal(...ngDevMode ? [{
-    debugName: "_statusCode",
-    source: this.extRequest,
-    computation: () => void 0
-  }] : [{
-    source: this.extRequest,
-    computation: () => void 0
-  }]);
+  });
   headers = computed(() => this.status() === "resolved" || this.status() === "error" ? this._headers() : void 0, ...ngDevMode ? [{ debugName: "headers" }] : []);
   progress = this._progress.asReadonly();
   statusCode = this._statusCode.asReadonly();
@@ -4655,7 +4643,7 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideZoneJsCompatibilityDetector() : [], typeof ngDevMode !== "undefined" && ngDevMode ? provideEnabledBlockingInitialNavigationDetector() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
-var VERSION = new Version("20.3.3");
+var VERSION = new Version("20.3.1");
 
 export {
   EVENT_MANAGER_PLUGINS,
@@ -4702,9 +4690,9 @@ export {
 @angular/common/fesm2022/http.mjs:
 @angular/platform-browser/fesm2022/platform-browser.mjs:
   (**
-   * @license Angular v20.3.3
+   * @license Angular v20.3.1
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-4ZRCX5EI.js.map
+//# sourceMappingURL=chunk-JFUME6QV.js.map

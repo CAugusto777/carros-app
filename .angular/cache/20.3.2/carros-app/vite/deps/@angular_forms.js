@@ -1,6 +1,6 @@
 import {
   getDOM
-} from "./chunk-RRYI367R.js";
+} from "./chunk-3SRXKMKJ.js";
 import {
   ApplicationRef,
   ChangeDetectorRef,
@@ -48,7 +48,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵlistener
-} from "./chunk-F6OF3YBK.js";
+} from "./chunk-NLZIVNDD.js";
 import {
   __spreadProps,
   __spreadValues
@@ -2614,9 +2614,6 @@ var FormGroup = class extends AbstractControl {
     this._updatePristine(options, this);
     this._updateTouched(options, this);
     this.updateValueAndValidity(options);
-    if (options?.emitEvent !== false) {
-      this._events.next(new FormResetEvent(this));
-    }
   }
   /**
    * The aggregate value of the `FormGroup`, including any disabled controls.
@@ -3142,6 +3139,7 @@ var NgForm = class _NgForm extends ControlContainer {
   resetForm(value = void 0) {
     this.form.reset(value);
     this.submittedReactive.set(false);
+    this.form._events.next(new FormResetEvent(this.form));
   }
   _setUpdateStrategy() {
     if (this.options && this.options.updateOn != null) {
@@ -3280,9 +3278,6 @@ var FormControl = class FormControl2 extends AbstractControl {
     this.markAsUntouched(options);
     this.setValue(this.value, options);
     this._pendingChange = false;
-    if (options?.emitEvent !== false) {
-      this._events.next(new FormResetEvent(this));
-    }
   }
   /**  @internal */
   _updateValue() {
@@ -4621,6 +4616,9 @@ var FormGroupDirective = class _FormGroupDirective extends ControlContainer {
   resetForm(value = void 0, options = {}) {
     this.form.reset(value, options);
     this._submittedReactive.set(false);
+    if (options?.emitEvent !== false) {
+      this.form._events.next(new FormResetEvent(this.form));
+    }
   }
   /** @internal */
   _updateDomValue() {
@@ -6458,9 +6456,6 @@ var FormArray = class extends AbstractControl {
     this._updatePristine(options, this);
     this._updateTouched(options, this);
     this.updateValueAndValidity(options);
-    if (options?.emitEvent !== false) {
-      this._events.next(new FormResetEvent(this));
-    }
   }
   /**
    * The aggregate value of the array, including any disabled controls.
@@ -6804,7 +6799,7 @@ var UntypedFormBuilder = class _UntypedFormBuilder extends FormBuilder {
     }]
   }], null, null);
 })();
-var VERSION = new Version("20.3.3");
+var VERSION = new Version("20.3.1");
 var FormsModule = class _FormsModule {
   /**
    * @description
@@ -6957,7 +6952,7 @@ export {
 
 @angular/forms/fesm2022/forms.mjs:
   (**
-   * @license Angular v20.3.3
+   * @license Angular v20.3.1
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)

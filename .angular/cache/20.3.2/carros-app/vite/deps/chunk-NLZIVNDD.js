@@ -20,6 +20,9 @@ function isNotFound(e) {
 }
 
 // node_modules/@angular/core/fesm2022/signal.mjs
+function defaultEquals(a, b) {
+  return Object.is(a, b);
+}
 var activeConsumer = null;
 var inNotificationPhase = false;
 var epoch = 1;
@@ -271,9 +274,6 @@ function isValidLink(checkLink, consumer) {
     } while (link !== void 0);
   }
   return false;
-}
-function defaultEquals(a, b) {
-  return Object.is(a, b);
 }
 function createComputed(computation, equal) {
   const node = Object.create(COMPUTED_NODE);
@@ -3389,14 +3389,15 @@ var BASE_EFFECT_NODE = (() => __spreadProps(__spreadValues({}, REACTIVE_NODE), {
   consumerIsAlwaysLive: true,
   consumerAllowSignalWrites: true,
   dirty: true,
+  hasRun: false,
   kind: "effect"
 }))();
 function runEffect(node) {
   node.dirty = false;
-  if (node.version > 0 && !consumerPollProducersForChange(node)) {
+  if (node.hasRun && !consumerPollProducersForChange(node)) {
     return;
   }
-  node.version++;
+  node.hasRun = true;
   const prevNode = consumerBeforeComputation(node);
   try {
     node.cleanup();
@@ -3411,104 +3412,6 @@ function setAlternateWeakRefImpl(impl) {
 }
 
 // node_modules/@angular/core/fesm2022/primitives/signals.mjs
-var formatter = {
-  /**
-   *  If the function returns `null`, the formatter is not used for this reference
-   */
-  header: (sig, config2) => {
-    if (!isSignal(sig) || config2?.ngSkipFormatting)
-      return null;
-    let value;
-    try {
-      value = sig();
-    } catch {
-      return ["span", "Signal(⚠️ Error)"];
-    }
-    const kind = "computation" in sig[SIGNAL] ? "Computed" : "Signal";
-    const isPrimitive = value === null || !Array.isArray(value) && typeof value !== "object";
-    return [
-      "span",
-      {},
-      ["span", {}, `${kind}(`],
-      (() => {
-        if (isSignal(value)) {
-          return formatter.header(value, config2);
-        } else if (isPrimitive && value !== void 0 && typeof value !== "function") {
-          return ["object", { object: value }];
-        } else {
-          return prettifyPreview(value);
-        }
-      })(),
-      ["span", {}, `)`]
-    ];
-  },
-  hasBody: (sig, config2) => {
-    if (!isSignal(sig))
-      return false;
-    try {
-      sig();
-    } catch {
-      return false;
-    }
-    return !config2?.ngSkipFormatting;
-  },
-  body: (sig, config2) => {
-    const color = "var(--sys-color-primary)";
-    return [
-      "div",
-      { style: `background: #FFFFFF10; padding-left: 4px; padding-top: 2px; padding-bottom: 2px;` },
-      ["div", { style: `color: ${color}` }, "Signal value: "],
-      ["div", { style: `padding-left: .5rem;` }, ["object", { object: sig(), config: config2 }]],
-      ["div", { style: `color: ${color}` }, "Signal function: "],
-      [
-        "div",
-        { style: `padding-left: .5rem;` },
-        ["object", { object: sig, config: __spreadProps(__spreadValues({}, config2), { skipFormatting: true }) }]
-      ]
-    ];
-  }
-};
-function prettifyPreview(value) {
-  if (value === null)
-    return "null";
-  if (Array.isArray(value))
-    return `Array(${value.length})`;
-  if (value instanceof Element)
-    return `<${value.tagName.toLowerCase()}>`;
-  if (value instanceof URL)
-    return `URL`;
-  switch (typeof value) {
-    case "undefined": {
-      return "undefined";
-    }
-    case "function": {
-      if ("prototype" in value) {
-        return "class";
-      } else {
-        return "() => {…}";
-      }
-    }
-    case "object": {
-      if (value.constructor.name === "Object") {
-        return "{…}";
-      } else {
-        return `${value.constructor.name} {}`;
-      }
-    }
-    default: {
-      return ["object", { object: value, config: { skipFormatting: true } }];
-    }
-  }
-}
-function isSignal(value) {
-  return value[SIGNAL] !== void 0;
-}
-function installDevToolsSignalFormatter() {
-  globalThis.devtoolsFormatters ??= [];
-  if (!globalThis.devtoolsFormatters.some((f) => f === formatter)) {
-    globalThis.devtoolsFormatters.push(formatter);
-  }
-}
 var NOOP_CLEANUP_FN = () => {
 };
 var WATCH_NODE = (() => {
@@ -3520,12 +3423,10 @@ var WATCH_NODE = (() => {
         node.schedule(node.ref);
       }
     },
+    hasRun: false,
     cleanupFn: NOOP_CLEANUP_FN
   });
 })();
-if (typeof ngDevMode !== "undefined" && ngDevMode) {
-  installDevToolsSignalFormatter();
-}
 
 // node_modules/@angular/core/fesm2022/root_effect_scheduler.mjs
 var Version = class {
@@ -3541,7 +3442,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = new Version("20.3.3");
+var VERSION = new Version("20.3.1");
 var ERROR_DETAILS_PAGE_BASE_URL = (() => {
   const versionSubDomain = VERSION.major !== "0" ? `v${VERSION.major}.` : "";
   return `https://${versionSubDomain}angular.dev/errors`;
@@ -5715,7 +5616,7 @@ function provideBrowserGlobalErrorListeners() {
     provideEnvironmentInitializer(() => void inject2(globalErrorListeners))
   ]);
 }
-function isSignal2(value) {
+function isSignal(value) {
   return typeof value === "function" && value[SIGNAL] !== void 0;
 }
 function ɵunwrapWritableSignal(value) {
@@ -5744,7 +5645,7 @@ function signalAsReadonlyFn() {
   return node.readonlyFn;
 }
 function isWritableSignal(value) {
-  return isSignal2(value) && typeof value.set === "function";
+  return isSignal(value) && typeof value.set === "function";
 }
 var ChangeDetectionScheduler = class {
 };
@@ -9901,8 +9802,8 @@ function nativeAppendOrInsertBefore(renderer, parent, child, beforeNode, isMove)
     nativeAppendChild(renderer, parent, child);
   }
 }
-function nativeRemoveNode(renderer, rNode, isHostElement, requireSynchronousElementRemoval) {
-  renderer.removeChild(null, rNode, isHostElement, requireSynchronousElementRemoval);
+function nativeRemoveNode(renderer, rNode, isHostElement) {
+  renderer.removeChild(null, rNode, isHostElement);
 }
 function clearElementContents(rElement) {
   rElement.textContent = "";
@@ -10241,8 +10142,8 @@ function applyToElementOrContainer(action, renderer, parent, lNodeToHandle, befo
     } else if (action === 1 && parent !== null) {
       nativeInsertBefore(renderer, parent, rNode, beforeNode || null, true);
     } else if (action === 2) {
-      runLeaveAnimationsWithCallback(parentLView, (nodeHasLeaveAnimations) => {
-        nativeRemoveNode(renderer, rNode, isComponent2, nodeHasLeaveAnimations);
+      runLeaveAnimationsWithCallback(parentLView, () => {
+        nativeRemoveNode(renderer, rNode, isComponent2);
       });
     } else if (action === 3) {
       runLeaveAnimationsWithCallback(parentLView, () => {
@@ -10373,11 +10274,11 @@ function runAfterLeaveAnimations(lView, callback) {
         lView[ANIMATIONS].running = void 0;
       }
       allLeavingAnimations.delete(lView);
-      callback(true);
+      callback();
     });
     return;
   }
-  callback(false);
+  callback();
 }
 function processCleanups(tView, lView) {
   ngDevMode && assertNotReactive(processCleanups.name);
@@ -14459,8 +14360,10 @@ var ComponentFactory2 = class extends ComponentFactory$1 {
       let componentView = null;
       try {
         const hostTNode = directiveHostFirstCreatePass(HEADER_OFFSET, rootLView, 2, "#host", () => rootTView.directiveRegistry, true, 0);
-        setupStaticAttributes(hostRenderer, hostElement, hostTNode);
-        attachPatchData(hostElement, rootLView);
+        if (hostElement) {
+          setupStaticAttributes(hostRenderer, hostElement, hostTNode);
+          attachPatchData(hostElement, rootLView);
+        }
         createDirectivesInstances(rootTView, rootLView, hostTNode);
         executeContentQueries(rootTView, hostTNode, rootLView);
         directiveHostEndFirstCreatePass(rootTView, hostTNode);
@@ -14490,7 +14393,7 @@ var ComponentFactory2 = class extends ComponentFactory$1 {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "20.3.3"] : (
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "20.3.1"] : (
     // Extract attributes and classes from the first selector only to match VE behavior.
     extractAttrsAndClassesFromSelector(componentDef.selectors[0])
   );
@@ -18369,7 +18272,7 @@ var globalUtilsFunctions = {
   "getRootComponents": getRootComponents,
   "getDirectives": getDirectives,
   "applyChanges": applyChanges,
-  "isSignal": isSignal2,
+  "isSignal": isSignal,
   "enableProfiling": enableProfiling
 };
 var _published = false;
@@ -19645,9 +19548,10 @@ function ɵɵdeferPrefetchWhen(rawValue) {
     try {
       const value = Boolean(rawValue);
       const tView = lView[TVIEW];
-      const tDetails = getTDeferBlockDetails(tView, tNode);
+      const tNode2 = getSelectedTNode();
+      const tDetails = getTDeferBlockDetails(tView, tNode2);
       if (value === true && tDetails.loadingState === DeferDependenciesLoadingState.NOT_STARTED) {
-        triggerPrefetching(tDetails, lView, tNode);
+        triggerPrefetching(tDetails, lView, tNode2);
       }
     } finally {
       setActiveConsumer(prevConsumer);
@@ -19997,6 +19901,7 @@ function ɵɵdeferHydrateOnViewport() {
     triggerDeferBlock(2, lView, tNode);
   }
 }
+var ARIA_PREFIX = "aria";
 function ɵɵariaProperty(name, value) {
   const lView = getLView();
   const bindingIndex = nextBindingIndex();
@@ -20014,11 +19919,15 @@ function ɵɵariaProperty(name, value) {
         /* TNodeType.Element */
       );
       const element = getNativeByTNode(tNode, lView);
-      setElementAttribute(lView[RENDERER], element, null, tNode.value, name, value, null);
+      const attributeName = ariaAttrName(name);
+      setElementAttribute(lView[RENDERER], element, null, tNode.value, attributeName, value, null);
     }
     ngDevMode && storePropertyBindingMetadata(tView.data, tNode, name, bindingIndex);
   }
   return ɵɵariaProperty;
+}
+function ariaAttrName(name) {
+  return name.charAt(ARIA_PREFIX.length) !== "-" ? ARIA_PREFIX + "-" + name.slice(ARIA_PREFIX.length).toLowerCase() : name;
 }
 function ɵɵattribute(name, value, sanitizer, namespace) {
   const lView = getLView();
@@ -20175,16 +20084,12 @@ function runEnterAnimation(lView, tNode, value) {
   const activeClasses = getClassListFromValue(value);
   const cleanupFns = [];
   const handleEnterAnimationStart = (event) => {
-    if (event.target !== nativeElement)
-      return;
     const eventName = event instanceof AnimationEvent ? "animationend" : "transitionend";
     ngZone.runOutsideAngular(() => {
       cleanupFns.push(renderer.listen(nativeElement, eventName, handleEnterAnimationEnd));
     });
   };
   const handleEnterAnimationEnd = (event) => {
-    if (event.target !== nativeElement)
-      return;
     enterAnimationEnd(event, nativeElement, renderer);
   };
   if (activeClasses && activeClasses.length > 0) {
@@ -20211,7 +20116,7 @@ function runEnterAnimation(lView, tNode, value) {
 }
 function enterAnimationEnd(event, nativeElement, renderer) {
   const elementData = enterClassMap.get(nativeElement);
-  if (event.target !== nativeElement || !elementData)
+  if (!elementData)
     return;
   if (isLongestAnimation(event, nativeElement)) {
     event.stopImmediatePropagation();
@@ -20279,8 +20184,6 @@ function animateLeaveClassRunner(el, tNode, classList, renderer, animationsDisab
   }
   cancelAnimationsIfRunning(el, renderer);
   const handleOutAnimationEnd = (event) => {
-    if (event.target !== el)
-      return;
     if (event instanceof CustomEvent || isLongestAnimation(event, el)) {
       event.stopImmediatePropagation();
       longestAnimations.delete(el);
@@ -25923,16 +25826,15 @@ var identityFn = (v) => v;
 function linkedSignal(optionsOrComputation, options) {
   if (typeof optionsOrComputation === "function") {
     const getter = createLinkedSignal(optionsOrComputation, identityFn, options?.equal);
-    return upgradeLinkedSignalGetter(getter, options?.debugName);
+    return upgradeLinkedSignalGetter(getter);
   } else {
     const getter = createLinkedSignal(optionsOrComputation.source, optionsOrComputation.computation, optionsOrComputation.equal);
-    return upgradeLinkedSignalGetter(getter, optionsOrComputation.debugName);
+    return upgradeLinkedSignalGetter(getter);
   }
 }
-function upgradeLinkedSignalGetter(getter, debugName) {
+function upgradeLinkedSignalGetter(getter) {
   if (ngDevMode) {
     getter.toString = () => `[LinkedSignal: ${getter()}]`;
-    getter[SIGNAL].debugName = debugName;
   }
   const node = getter[SIGNAL];
   const upgradedGetter = getter;
@@ -27996,7 +27898,7 @@ function createPlatformInjector(providers = [], name) {
 function assertPlatform(requiredToken) {
   const platform = getPlatform();
   if (!platform) {
-    throw new RuntimeError(-401, ngDevMode && "No platform exists!");
+    throw new RuntimeError(401, ngDevMode && "No platform exists!");
   }
   if ((typeof ngDevMode === "undefined" || ngDevMode) && !platform.injector.get(requiredToken, null)) {
     throw new RuntimeError(400, "A platform with a different configuration has been created. Please destroy it first.");
@@ -29085,7 +28987,7 @@ function internalCreateApplication(config2) {
     /* ProfilerEvent.BootstrapApplicationStart */
   );
   if (false) {
-    throw new RuntimeError(-401, ngDevMode && "Missing Platform: This may be due to using `bootstrapApplication` on the server without passing a `BootstrapContext`. Please make sure that `bootstrapApplication` is called with a `context` argument.");
+    throw new RuntimeError(401, ngDevMode && "Missing Platform: This may be due to using `bootstrapApplication` on the server without passing a `BootstrapContext`. Please make sure that `bootstrapApplication` is called with a `context` argument.");
   }
   try {
     const platformInjector = platformRef?.injector ?? createOrReusePlatformInjector(platformProviders);
@@ -30307,7 +30209,7 @@ export {
   ErrorHandler,
   INTERNAL_APPLICATION_ERROR_HANDLER,
   provideBrowserGlobalErrorListeners,
-  isSignal2 as isSignal,
+  isSignal,
   ɵunwrapWritableSignal,
   signal,
   ChangeDetectionScheduler,
@@ -30756,7 +30658,7 @@ export {
 @angular/core/fesm2022/resource.mjs:
 @angular/core/fesm2022/primitives/event-dispatch.mjs:
   (**
-   * @license Angular v20.3.3
+   * @license Angular v20.3.1
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
@@ -30764,7 +30666,7 @@ export {
 @angular/core/fesm2022/debug_node.mjs:
 @angular/core/fesm2022/core.mjs:
   (**
-   * @license Angular v20.3.3
+   * @license Angular v20.3.1
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
@@ -30785,4 +30687,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-F6OF3YBK.js.map
+//# sourceMappingURL=chunk-NLZIVNDD.js.map
