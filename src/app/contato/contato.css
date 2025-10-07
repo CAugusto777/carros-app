@@ -579,12 +579,7 @@ select.form-control {
     position: relative;
 }
 
-.lgpd-content li::before {
-    content: "•";
-    color: #667eea;
-    font-weight: bold;
-    margin-right: 10px;
-}
+
 
 .lgpd-acceptance {
     margin-top: 30px;
