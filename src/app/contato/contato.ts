@@ -36,6 +36,7 @@ export class Contato {
   isSubmitting = false;
   submitSuccess = false;
   submitError = false;
+  showLgpdModal = false;
 
   categories = [
     { value: 'geral', label: 'Sugestão Geral' },
@@ -124,5 +125,16 @@ export class Contato {
     if (count > 450) return 'text-danger';
     if (count > 400) return 'text-warning';
     return 'text-muted';
+  }
+
+  // Métodos para o Modal LGPD
+  openLgpdModal() {
+    this.showLgpdModal = true;
+    document.body.style.overflow = 'hidden'; // Previne scroll do body
+  }
+
+  closeLgpdModal() {
+    this.showLgpdModal = false;
+    document.body.style.overflow = ''; // Restaura scroll do body
   }
 }
