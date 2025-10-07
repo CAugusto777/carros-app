@@ -150,12 +150,42 @@ main {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.evento-item {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3B82F6;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 .eventos h2 {
     color: #3B82F6;
     margin-bottom: 15px;
     border-bottom: 2px solid #E5E7EB;
     padding-bottom: 10px;
     font-size: 1.5rem;
+}
+
+.evento-item h3 {
+    color: #1e40af;
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.evento-data {
+    color: #64748b;
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.evento-local {
+    color: #475569;
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
 }
 
 /* RESPONSIVIDADE */
@@ -171,15 +201,27 @@ main {
         position: static;
         margin-top: 20px;
     }
+    .evento-item {
+        padding: 12px;
+    }
+    
+    .evento-item h3 {
+        font-size: 1rem;
+    }
+
     
     .carrosel-container {
         max-width: 100%;
     }
 }
 
+
 @media (max-width: 768px) {
     .home-text-section h1 {
         font-size: 2.5rem;
+    }
+    .evento-item {
+        margin-bottom: 12px;
     }
     
     .carrosel-container {
@@ -209,6 +251,19 @@ main {
     .home-text-section h1 {
         font-size: 2rem;
     }
+
+     .evento-item {
+        padding: 10px;
+    }
+     .evento-item h3 {
+        font-size: 0.95rem;
+    }
+    
+    .evento-data,
+    .evento-local {
+        font-size: 0.85rem;
+    }
+
     
     .carrosel-container {
         aspect-ratio: 1/1;
