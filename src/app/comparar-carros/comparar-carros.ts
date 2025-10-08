@@ -121,23 +121,28 @@ export class CompararCarros implements OnInit, OnDestroy {
   }
 
   // Alternar seleção de carro
-  toggleCarroSelection(carroId: number): void {
-    const index = this.carrosSelecionados.indexOf(carroId);
-    
-    if (index > -1) {
-      // Remover o carro da lista de selecionados
-      this.carrosSelecionados.splice(index, 1);
-    } else {
-      // Verificar se já existem 2 carros selecionados
-      if (this.carrosSelecionados.length >= 2) {
-        this.mostrarAlerta('Você só pode selecionar 2 carros para comparar!');
-        return;
-      }
-      
-      // Adicionar o carro à lista de selecionados
-      this.carrosSelecionados.push(carroId);
-    }
+ toggleCarroSelection(carroId: number, event?: Event): void {
+  if (event) {
+    event.stopPropagation(); // Só para se chamado pelo checkbox
   }
+  
+  const index = this.carrosSelecionados.indexOf(carroId);
+  
+  if (index > -1) {
+    this.carrosSelecionados.splice(index, 1);
+  } else {
+    if (this.carrosSelecionados.length >= 2) {
+      this.mostrarAlerta('Você só pode selecionar 2 carros para comparar!');
+      return;
+    }
+    this.carrosSelecionados.push(carroId);
+  }
+}
+
+onCheckboxClick(carroId: number, event: Event): void {
+  event.stopPropagation(); // Impede que o clique chegue ao card
+  this.toggleCarroSelection(carroId);
+}
 
   // Obter texto informativo
   getInfoText(): string {

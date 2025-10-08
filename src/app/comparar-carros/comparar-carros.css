@@ -61,7 +61,7 @@ main{
     transform: translateY(-3px);
 }
 
-/* Checkbox Container */
+/* Checkbox Container 
 .checkbox-container {
     position: absolute;
     top: 15px;
@@ -75,7 +75,7 @@ main{
     cursor: pointer;
     accent-color: #667eea;
     transform: scale(1.2);
-}
+}*/
 
 /* Imagem do Carro */
 .carro-imagem {
