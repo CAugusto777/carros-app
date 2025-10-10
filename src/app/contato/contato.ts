@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 interface SuggestionForm {
   name: string;
@@ -16,9 +17,10 @@ interface SuggestionForm {
 
 @Component({
   selector: 'app-contato',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './contato.html',
-  styleUrl: './contato.css'
+  styleUrls: ['./contato.css']
 })
 export class Contato {
   suggestionForm: SuggestionForm = {
@@ -63,7 +65,6 @@ export class Contato {
         this.submitSuccess = true;
         this.resetForm();
         
-        // Esconder mensagem de sucesso após 5 segundos
         setTimeout(() => {
           this.submitSuccess = false;
         }, 5000);
@@ -127,14 +128,18 @@ export class Contato {
     return 'text-muted';
   }
 
-  // Métodos para o Modal LGPD
   openLgpdModal() {
     this.showLgpdModal = true;
-    document.body.style.overflow = 'hidden'; // Previne scroll do body
+    document.body.style.overflow = 'hidden';
   }
 
   closeLgpdModal() {
     this.showLgpdModal = false;
-    document.body.style.overflow = ''; // Restaura scroll do body
+    document.body.style.overflow = '';
+  }
+
+  // Novo método para prevenir fechamento ao clicar no conteúdo
+  onModalContentClick(event: Event) {
+    event.stopPropagation();
   }
 }
